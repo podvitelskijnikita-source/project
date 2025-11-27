@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="../static/logo.png" type="image/png">
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+    <a href="/" class="logo">
+        <img src="../static/logo.png" alt="GoBuy Logo">
+    </a>
+</div>
+        <div class="header-center">
+            <div class="search-bar">
+                <input type="text" placeholder="Поиск">
+                <button>&#128269;</button>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="user-actions">
+                <a href="/login">Вход / регистрация</a>
+            </div>
+            <a href="/cart" class="cart-link">
+                <img src="https://www.svgrepo.com/show/506144/cart-4.svg" alt="Корзина">
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="login-register-container">
+            <h2>Регистрация</h2>
+            <form method="post" action="/register" >
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Имя" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="surname" placeholder="Фамилия" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="E-mail" required>
+                </div>
+                {% if errors.email %}
+                    <p class="error-message">{{ errors.email }}</p>
+                {% endif %}
+                <div class="form-group">
+                    <input type="password" name="password" placeholder="Пароль" required>
+                </div>
+                {% if errors.password %}
+                    <p class="error-message">{{ errors.password }}</p>
+                {% endif %}
+                <button type="submit" class="btn">Зарегистрироваться</button>
+            </form>
+            <p class="form-link">Уже есть профиль? <a href="/login">Войти</a></p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="#" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <p class="footer-text">&copy; 2023 GoBuy. Все права защищены. | Shop smart. Live fully.</p>
+    </footer>
+</body>
+</html>

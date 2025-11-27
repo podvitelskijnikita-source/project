@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказ оформлен</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="../static/logo.png" type="image/png">
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <a href="/" class="logo">
+                <img src="../static/logo.png" alt="GoBuy Logo">
+            </a>
+        </div>
+        <div class="header-center">
+            <div class="search-bar">
+                <input type="text" placeholder="Поиск">
+                <button>&#128269;</button>
+            </div>
+        </div>
+        <div class="user-actions">
+            {% if user %}
+                <form action="/logout" method="post" style="display:inline;">
+                    <input value="Выход" type="submit" id="log-button">
+                </form>
+            {% else %}
+                <a href="/login">Вход / регистрация</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="order-success-container">
+            <h2>Товар успешно заказан!</h2>
+            <p>Спасибо за вашу покупку. Мы свяжемся с вами в ближайшее время для подтверждения деталей.</p>
+            <a href="/" class="btn">Вернуться на главную</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="#" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <p class="footer-text">&copy; 2023 GoBuy. Все права защищены. | Shop smart. Live fully.</p>
+    </footer>
+</body>
+</html>

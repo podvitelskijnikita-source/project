@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- HEADER (тот же, что у вас был) -->
+    <header class="header">
+        <div class="header-left">
+            <a href="/" class="logo"><img src="../static/logo.png" alt="GoBuy Logo"></a>
+        </div>
+        <div class="header-center">
+            <div class="search-bar">
+                <input type="text" placeholder="Поиск">
+                <button>&#128269;</button>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="user-actions">
+            {% if user %}
+                <form action="/logout" method="post" style="display:inline;">
+                    <input value="Выход" type="submit" id="log-button">
+                </form>
+            {% else %}
+                <a href="/login">Вход / регистрация</a>
+            {% endif %}
+            </div>
+            <a href="/cart" class="cart-link">
+                <img src="https://www.svgrepo.com/show/506144/cart-4.svg" alt="Корзина">
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Ваша корзина</h2>
+        <div class="cart-page-container">
+
+            <!-- Проверяем, пуста ли корзина -->
+            {% if cart_items %}
+                <!-- Список товаров -->
+                <div class="cart-items-list">
+                    {% for item in cart_items %}
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <!-- Путь к картинке адаптируйте под вашу структуру -->
+                            <img src="{{ url_for('static', path='goods/' ~ item.photo) }}" alt="{{ item.name }}">
+                        </div>
+                        <div class="cart-item-details">
+                            <h4>{{ item.name }}</h4>
+                            <p class="cart-item-price">{{ item.price }} Тг</p>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <!-- Просто отображаем количество, редактирование сложнее -->
+                            <span>Кол-во: {{ item.quantity }}</span>
+                        </div>
+                        <div class="cart-item-actions">
+                            <!-- Форма для удаления -->
+                            <form action="/cart/remove" method="post">
+                                <input type="hidden" name="good_id" value="{{ item.id }}">
+                                <button type="submit" class="btn-remove">Удалить</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="cart-summary">
+                    <h3>Сумма заказа</h3>
+                    <div class="summary-row">
+                        <span>Товары </span>
+                        <span>{{ total_amount }} Тг</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Доставка</span>
+                        <span>Бесплатно</span>
+                    </div>
+                    <hr>
+                    <div class="summary-row" style="font-weight: bold; font-size: 1.2em;">
+                        <span>Итого</span>
+                        <span>{{ total_amount }} Тг</span>
+                    </div>
+                    <a href="/order-success" class="btn">Оформить заказ</a>
+                </div>
+
+            {% else %}
+                <div style="width: 100%; text-align: center; padding: 50px;">
+                    <h3>Ваша корзина пуста</h3>
+                    <a href="/" class="btn btn-primary" style="margin-top: 20px;">Перейти к покупкам</a>
+                </div>
+            {% endif %}
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p class="footer-text">&copy; 2023 GoBuy. Все права защищены. | Shop smart. Live fully.</p>
+    </footer>
+</body>
+</html>

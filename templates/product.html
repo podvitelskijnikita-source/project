@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница товара</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="../static/logo.png" type="image/png">
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+    <a href="/" class="logo">
+        <img src="../static/logo.png" alt="GoBuy Logo">
+    </a>
+</div>
+        <div class="header-center">
+            <div class="search-bar">
+                <input type="text" placeholder="Поиск">
+                <button>&#128269;</button>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="user-actions">
+            {% if user %}
+                <form action="/logout" method="post" style="display:inline;">
+                    <input value="Выход" type="submit" id="log-button">
+                </form>
+            {% else %}
+                <a href="/login">Вход / регистрация</a>
+            {% endif %}
+        </div>
+            <a href="/cart" class="cart-link">
+                <img src="https://www.svgrepo.com/show/506144/cart-4.svg" alt="Корзина">
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="product-page-layout">
+
+
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img src="{{url_for('static', path='goods/' ~ good.photo)}}" alt="product">
+                </div>
+            </div>
+
+            <!-- Правая колонка: Информация -->
+            <div class="product-details">
+                <h1>{{good.name}}</h1>
+                <p class="price">{{good.price}} Тг</p>
+                <p class="description">
+                    {{good.info}}
+                </p>
+                <form action="/cart/add" method="post">
+    <input type="hidden" name="good_id" value="{{ good.id }}">
+    <button type="submit" class="btn" style="cursor: pointer;">Добавить в корзину</button>
+</form>
+            </div>
+
+            
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="#" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <p class="footer-text">&copy; 2023 GoBuy. Все права защищены. | Shop smart. Live fully.</p>
+    </footer>
+</body>
+</html>

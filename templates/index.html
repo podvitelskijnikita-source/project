@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="../static/logo.png" type="image/png">
+</head>
+<body>
+<header class="header">
+        <div class="header-left">
+    <a href="/" class="logo">
+        <img src="../static/logo.png" alt="GoBuy Logo">
+    </a>
+</div>
+        <div class="header-center">
+            <div class="search-bar">
+                <input type="text" placeholder="Поиск">
+                <button>&#128269;</button>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="user-actions">
+                {% if user %}
+                    <form action="/logout" method="post" style="display:inline;">
+                        <input value="Выход" type="submit" id="log-button">
+                    </form>
+                {% else %}
+                    <a href="/login">Вход / регистрация</a>
+                {% endif %}
+            </div>
+            <a href="/cart" class="cart-link">
+                <img src="https://www.svgrepo.com/show/506144/cart-4.svg" alt="Корзина">
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="grid-container">
+            <a href="/catalog/Одежда" class="category-card">
+                <img src="../static/odezhda.png" alt="Одежда">
+                <h3>Одежда</h3>
+            </a>
+            <a href="/catalog/Ноутбуки" class="category-card">
+                <img src="../static/note.png" alt="Ноутбуки">
+                <h3>Ноутбуки</h3>
+            </a>
+            <a href="/catalog/Смартфоны" class="category-card">
+                <img src="../static/phone.png" alt="Смартфоны">
+                <h3>Смартфоны</h3>
+            </a>
+            <a href="/catalog/Обувь" class="category-card">
+                <img src="../static/obuv.png" alt="Обувь">
+                <h3>Обувь</h3>
+            </a>
+            <a href="/catalog/Часы" class="category-card">
+                <img src="../static/chasi.png" alt="Часы">
+                <h3>Часы</h3>
+            </a>
+            <a href="/catalog/Бытовая техника" class="category-card">
+                <img src="../static/tehnica.png" alt="Бытовая техника">
+                <h3>Бытовая техника</h3>
+            </a>
+        </div>
+            </main>
+
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="#" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <p class="footer-text">&copy; 2023 GoBuy. Все права защищены. | Shop smart. Live fully.</p>
+    </footer>
+
+</body>
+</html>
